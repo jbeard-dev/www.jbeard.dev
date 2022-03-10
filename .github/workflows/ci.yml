@@ -10,14 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Source
+        uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
 
-      - name: Minify Action
+      - name: Minify
         uses: anthonyftwang/minify-action@v1.0.1
 
-      - uses: actions/upload-artifact@master
+      - name: Upload Artifact
+        uses: actions/upload-artifact@master
         with:
           name: src
           path: |
@@ -29,7 +31,8 @@ jobs:
     needs: build
 
     steps:
-      - uses: actions/download-artifact@master
+      - name: Download Artifact
+        uses: actions/download-artifact@master
         with:
           name: src
       - name: Upload to S3
@@ -46,7 +49,7 @@ jobs:
           AWS_REGION: 'us-west-2'
           SOURCE_DIR: '.'
 
-      - name: Invalidate CloudFront
+      - name: Invalidate CloudFront Cache
         uses: chetan/invalidate-cloudfront-action@v2
         env:
           DISTRIBUTION: ${{ secrets.CF_DISTRIBUTION }}
