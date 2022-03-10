@@ -24,8 +24,9 @@
 }
 
 body {
-	background: linear-gradient(#110819, #304E94, #46335A);
-	background-size: 400% 400%;
+  background: linear-gradient(#110819, #304E94, #46335A);
+  background-size: 400% 400%;
+  font-size: calc(26px + (26 - 12) * ((100vw - 300px) / (1600 - 300)));
 }
 
 #header a {
@@ -39,12 +40,10 @@ body {
 
 #main {
   text-align: center;
-  font-size: 3em;
   padding: 20px;
   margin: 0 auto;
   margin-top: 200px;
   color: #efefef;
-  width: 70%;
 }
 
 #content {
